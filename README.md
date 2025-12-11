@@ -47,4 +47,4 @@ agricultural drive cycle.
 * Open TractorSimscape.prj to get started with the project. 
 * Requires MATLAB&reg; release R2025a or newer.
 
-Copyright 2025 - 2026 The MathWorks, Inc.
+Copyright 2024 - 2026 The MathWorks, Inc.
