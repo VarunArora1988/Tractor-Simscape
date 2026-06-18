@@ -68,45 +68,41 @@ end
 %--------------------------------------------------------------------------
 
 %--------------------------------------------------------------------------
-function status = runAllSmokeTests(~, config)
-status = 1;
+function runAllSmokeTests(~, config)
 results = TestExecutor.runAll(config);
-if ~any([results.Failed])
-    fprintf("\nAll tests passed!\n");
-    status = 0;
+if any([results.Failed])
+    error("Some tests failed.");
 end
+fprintf("\nAll tests passed!\n");
 end
 %--------------------------------------------------------------------------
 
 %--------------------------------------------------------------------------
-function status = runModelSmokeTests(~, config)
-status = 1;
+function runModelSmokeTests(~, config)
 results = TestExecutor.runModelsOnly(config);
-if ~any([results.Failed])
-    fprintf("\nAll tests passed!\n");
-    status = 0;
+if any([results.Failed])
+    error("Some tests failed.");
 end
+fprintf("\nAll tests passed!\n");
 end
 %--------------------------------------------------------------------------
 
 %--------------------------------------------------------------------------
-function status = runWorkflowSmokeTests(~, config)
-status = 1;
+function runWorkflowSmokeTests(~, config)
 results = TestExecutor.runWorkflowsOnly(config);
-if ~any([results.Failed])
-    fprintf("\nAll tests passed!\n");
-    status = 0;
+if any([results.Failed])
+    error("Some tests failed.");
 end
+fprintf("\nAll tests passed!\n");
 end
 %--------------------------------------------------------------------------
 
 %--------------------------------------------------------------------------
-function status = runCustomTests(~, config)
-status = 1;
+function runCustomTests(~, config)
 results = TestExecutor.runCustomOnly(config);
-if ~any([results.Failed])
-    fprintf("\nAll tests passed!\n");
-    status = 0;
+if any([results.Failed])
+    error("Some tests failed.");
 end
+fprintf("\nAll tests passed!\n");
 end
 %--------------------------------------------------------------------------
