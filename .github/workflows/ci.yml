@@ -33,7 +33,7 @@ on:
       - '**.xml'
 
   schedule:
-    - cron:  '55/61 20/25 1/6 * *' # schedule a weekly-ish build
+    - cron:  '30 4 * * 1' # schedule a weekly build (Monday 4:30 UTC)
 
 jobs:
 
@@ -45,7 +45,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Setup MATLAB
-        uses: matlab-actions/setup-matlab@v2
+        uses: matlab-actions/setup-matlab@v3
         with:
           release: R2025b
           cache: true
@@ -57,6 +57,6 @@ jobs:
             MATLAB_Test
 
       - name: Run tests
-        uses: matlab-actions/run-command@v2
+        uses: matlab-actions/run-command@v3
         with:
-          command: try, openProject(pwd); buildtool AllTest; catch e, disp(e.message); exit(1); end; exit(0);
+          command: openProject(pwd); buildtool AllTest;
