@@ -44,10 +44,16 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
 
+      - name: Set up OpenJDK 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin' # Eclipse Temurin build of OpenJDK 21
+          java-version: '21'
+          
       - name: Setup MATLAB
         uses: matlab-actions/setup-matlab@v3
         with:
-          release: R2025bU6
+          release: R2025b
           cache: true
           products: |
             Simulink
@@ -57,6 +63,8 @@ jobs:
             MATLAB_Test
 
       - name: Run tests
+        env:
+          MATLAB_JAVA: $JAVA_HOME
         uses: matlab-actions/run-command@v3
         with:
           command: openProject(pwd); buildtool AllTest;
