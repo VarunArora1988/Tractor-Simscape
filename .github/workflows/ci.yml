@@ -56,7 +56,7 @@ jobs:
             Simscape_Fluids
             MATLAB_Test
 
-      - name: Run tests using JAVA
+      - name: Run tests
         uses: matlab-actions/run-command@v3
         with:
           command: openProject(pwd); buildtool AllTest;
