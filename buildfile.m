@@ -75,6 +75,7 @@ if ~any([results.Failed])
     fprintf("\nAll tests passed!\n");
     status = 0;
 end
+fprintf("runAllSmokeTests status: %d\n", status);
 end
 %--------------------------------------------------------------------------
 
@@ -86,6 +87,7 @@ if ~any([results.Failed])
     fprintf("\nAll tests passed!\n");
     status = 0;
 end
+fprintf("runModelSmokeTests status: %d\n", status);
 end
 %--------------------------------------------------------------------------
 
@@ -97,6 +99,7 @@ if ~any([results.Failed])
     fprintf("\nAll tests passed!\n");
     status = 0;
 end
+fprintf("runWorkflowSmokeTests status: %d\n", status);
 end
 %--------------------------------------------------------------------------
 
@@ -108,4 +111,5 @@ if ~any([results.Failed])
     fprintf("\nAll tests passed!\n");
     status = 0;
 end
+fprintf("runCustomTests status: %d\n", status);
 end
