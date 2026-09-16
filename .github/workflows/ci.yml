@@ -62,7 +62,7 @@ jobs:
             Simscape_Fluids
             MATLAB_Test
 
-      - name: Run tests
+      - name: Run tests using JAVA
         env:
           MATLAB_JAVA: $JAVA_HOME
         uses: matlab-actions/run-command@v3
