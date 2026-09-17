@@ -57,6 +57,6 @@ jobs:
             MATLAB_Test
 
       - name: Run tests
-        uses: matlab-actions/run-command@v2
+        uses: matlab-actions/run-command@v3
         with:
           command: openProject(pwd); buildtool AllTest;

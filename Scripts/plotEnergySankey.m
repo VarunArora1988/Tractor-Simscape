@@ -41,6 +41,11 @@ function plotSankeyVertical(inputs, losses, unit, labels, title)
 % Date: 31.08.2023
 %-----------------
 
+% In a batch session (for example CI) the MATLAB desktop is unavailable, so
+% the figure must stay invisible: asking for a visible or front-most figure
+% throws java.awt.HeadlessException.
+hasDesktop = usejava('desktop');
+
 % Figure name
 figString = ['h1_' mfilename];
 % Only create a figure if no figure exists
@@ -50,12 +55,16 @@ if (fig_hExist)
     figExist = evalin('base',['ishandle(' figString ') && strcmp(get(' figString ', ''type''), ''figure'')']);
 end
 if ~figExist
-    fig_h = figure('Name',figString);
+    fig_h = figure('Name',figString,'Visible',hasDesktop);
     assignin('base',figString,fig_h);
 else
     fig_h = evalin('base',figString);
 end
-figure(fig_h)
+if hasDesktop
+    figure(fig_h)                 % make current and bring to the front
+else
+    set(0,'CurrentFigure',fig_h)  % make current without showing it
+end
 clf(fig_h)
 
 lineWidth = 1.5; % Set line width
@@ -71,7 +80,7 @@ elseif any(losses < 0) || any(inputs < 0)
     
 else    
     %if possible, maximize figure%
-    if exist('maximize','file')
+    if hasDesktop && exist('maximize','file')
         maximize(gcf);
     end
 
