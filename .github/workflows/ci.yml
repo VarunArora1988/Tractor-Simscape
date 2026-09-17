@@ -56,13 +56,6 @@ jobs:
             Simscape_Fluids
             MATLAB_Test
 
-      - name: Start virtual display
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y xvfb
-          Xvfb :99 -screen 0 1024x768x24 &
-          echo "DISPLAY=:99" >> $GITHUB_ENV
-
       - name: Run tests
         uses: matlab-actions/run-command@v3
         with:
