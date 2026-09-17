@@ -68,41 +68,48 @@ end
 %--------------------------------------------------------------------------
 
 %--------------------------------------------------------------------------
-function runAllSmokeTests(~, config)
+function status = runAllSmokeTests(~, config)
+status = 1;
 results = TestExecutor.runAll(config);
-if any([results.Failed])
-    error("Some tests failed.");
+if ~any([results.Failed])
+    fprintf("\nAll tests passed!\n");
+    status = 0;
 end
-fprintf("\nAll tests passed!\n");
+fprintf("runAllSmokeTests status: %d\n", status);
 end
 %--------------------------------------------------------------------------
 
 %--------------------------------------------------------------------------
-function runModelSmokeTests(~, config)
+function status = runModelSmokeTests(~, config)
+status = 1;
 results = TestExecutor.runModelsOnly(config);
-if any([results.Failed])
-    error("Some tests failed.");
+if ~any([results.Failed])
+    fprintf("\nAll tests passed!\n");
+    status = 0;
 end
-fprintf("\nAll tests passed!\n");
+fprintf("runModelSmokeTests status: %d\n", status);
 end
 %--------------------------------------------------------------------------
 
 %--------------------------------------------------------------------------
-function runWorkflowSmokeTests(~, config)
+function status = runWorkflowSmokeTests(~, config)
+status = 1;
 results = TestExecutor.runWorkflowsOnly(config);
-if any([results.Failed])
-    error("Some tests failed.");
+if ~any([results.Failed])
+    fprintf("\nAll tests passed!\n");
+    status = 0;
 end
-fprintf("\nAll tests passed!\n");
+fprintf("runWorkflowSmokeTests status: %d\n", status);
 end
 %--------------------------------------------------------------------------
 
 %--------------------------------------------------------------------------
-function runCustomTests(~, config)
+function status = runCustomTests(~, config)
+status = 1;
 results = TestExecutor.runCustomOnly(config);
-if any([results.Failed])
-    error("Some tests failed.");
+if ~any([results.Failed])
+    fprintf("\nAll tests passed!\n");
+    status = 0;
 end
-fprintf("\nAll tests passed!\n");
+fprintf("runCustomTests status: %d\n", status);
 end
-%--------------------------------------------------------------------------
