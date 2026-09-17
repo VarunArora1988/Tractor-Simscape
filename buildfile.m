@@ -10,13 +10,6 @@ function plan = buildfile
 
 % Copyright 2026  The MathWorks, Inc.
 
-% In batch mode (CI) there is no display, so keep figures invisible. This
-% prevents the MATLAB desktop from being asked for an undocked frame, which
-% throws java.awt.HeadlessException on a headless runner.
-if batchStartupOptionUsed
-    set(0, 'DefaultFigureVisible', 'off');
-end
-
 % Open project
 model = 'TractorEnergyComputation';
 status = bdIsLoaded(model);
@@ -83,7 +76,6 @@ if ~any([results.Failed])
     status = 0;
 end
 fprintf("runAllSmokeTests status: %d\n", status);
-finishInBatch(status);
 end
 %--------------------------------------------------------------------------
 
@@ -96,7 +88,6 @@ if ~any([results.Failed])
     status = 0;
 end
 fprintf("runModelSmokeTests status: %d\n", status);
-finishInBatch(status);
 end
 %--------------------------------------------------------------------------
 
@@ -109,7 +100,6 @@ if ~any([results.Failed])
     status = 0;
 end
 fprintf("runWorkflowSmokeTests status: %d\n", status);
-finishInBatch(status);
 end
 %--------------------------------------------------------------------------
 
@@ -122,16 +112,4 @@ if ~any([results.Failed])
     status = 0;
 end
 fprintf("runCustomTests status: %d\n", status);
-finishInBatch(status);
-end
-%--------------------------------------------------------------------------
-
-%--------------------------------------------------------------------------
-function finishInBatch(status)
-% In batch mode (CI), exit with the test status explicitly. A stray
-% java.awt.HeadlessException on the AWT thread can otherwise make MATLAB
-% exit non-zero even when every test passed.
-if batchStartupOptionUsed
-    exit(status);
-end
 end
